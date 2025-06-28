@@ -22,11 +22,13 @@ export class Login {
   onLogin() {
     debugger;
     const formValue =  this.loginForm.value;
+    
     this.http.post("https://freeapi.miniprojectideas.com/api/User/Login",formValue).subscribe({
       next:(response:any)=>{
         debugger;
         if(response.result) {
           alert("Login Success");
+          localStorage.setItem('angular20Token',response.data.token)
           this.router.navigateByUrl("/dashboard")
         } else {
           alert(response.message)
